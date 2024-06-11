@@ -2,7 +2,7 @@ const character = () => ({
     name: '',
     bloodline: 'Ardent',
     origin: 'Spit-Born',
-    Post: 'Alchemist',
+    post: 'Alchemist',
     info: '',
     edges: ['grace','iron','instinct'],
     milestones: {
