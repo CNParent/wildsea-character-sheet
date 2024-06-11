@@ -7,7 +7,8 @@
 </script>
 
 <TextInput bind:content={model.name}>Name</TextInput>
-<TextInput bind:content={model.experience}>Experience</TextInput>
-<TextInput bind:content={model.level}>Level</TextInput>
+<TextInput bind:content={model.bloodline}>Bloodline</TextInput>
+<TextInput bind:content={model.origin}>Origin</TextInput>
+<TextInput bind:content={model.post}>Post</TextInput>
 <hr />
 <TextArea bind:content={model.info}>Info</TextArea>
