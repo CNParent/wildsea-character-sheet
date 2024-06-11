@@ -1,0 +1,22 @@
+#app .alert {
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+}
+
+#app .position-topright {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#app .bubble {
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0px;
+    border-radius: 1.5em;
+}
+
+#app .wrap {
+    white-space: pre-wrap;
+}
