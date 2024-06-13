@@ -4601,7 +4601,7 @@
     	return child_ctx;
     }
 
-    // (22:1) {:else}
+    // (21:1) {:else}
     function create_else_block(ctx) {
     	let link;
 
@@ -4622,7 +4622,7 @@
     	};
     }
 
-    // (20:1) {#if theme == 'dark'}
+    // (19:1) {#if theme == 'dark'}
     function create_if_block(ctx) {
     	let link;
 
@@ -4641,8 +4641,8 @@
     	};
     }
 
-    // (30:2) <Details open={true} title="Character">
-    function create_default_slot_9(ctx) {
+    // (29:2) <Details open={true} title="Character">
+    function create_default_slot_13(ctx) {
     	let bio;
     	let current;
     	bio = new Bio({ props: { model: /*model*/ ctx[0] } });
@@ -4675,8 +4675,8 @@
     	};
     }
 
-    // (31:2) <Details title="Edges" size="col-lg-3 col-xs-6">
-    function create_default_slot_8(ctx) {
+    // (30:2) <Details title="Edges" size="col-lg-3 col-12">
+    function create_default_slot_12(ctx) {
     	let collection;
     	let current;
 
@@ -4716,8 +4716,8 @@
     	};
     }
 
-    // (37:2) <Details title="Drives" size="col-lg-3 col-xs-6">
-    function create_default_slot_7(ctx) {
+    // (36:2) <Details title="Drives" size="col-lg-3 col-12">
+    function create_default_slot_11(ctx) {
     	let collection;
     	let current;
 
@@ -4757,8 +4757,8 @@
     	};
     }
 
-    // (43:2) <Details title="Major Milestones" size="col-lg-3 col-xs-6">
-    function create_default_slot_6(ctx) {
+    // (42:2) <Details title="Major Milestones" size="col-lg-3 col-12">
+    function create_default_slot_10(ctx) {
     	let collection;
     	let current;
 
@@ -4797,8 +4797,8 @@
     	};
     }
 
-    // (46:2) <Details title="Minor Milestones" size="col-lg-3 col-xs-6">
-    function create_default_slot_5(ctx) {
+    // (45:2) <Details title="Minor Milestones" size="col-lg-3 col-12">
+    function create_default_slot_9(ctx) {
     	let collection;
     	let current;
 
@@ -4837,7 +4837,7 @@
     	};
     }
 
-    // (51:4) {#each model.skills as skill}
+    // (50:4) {#each model.skills as skill}
     function create_each_block_1(ctx) {
     	let skill;
     	let current;
@@ -4871,8 +4871,8 @@
     	};
     }
 
-    // (49:2) <Details title="Skills" size="col-lg-3 col-xs-6">
-    function create_default_slot_4(ctx) {
+    // (48:2) <Details title="Skills" size="col-lg-3 col-12">
+    function create_default_slot_8(ctx) {
     	let div;
     	let current;
     	let each_value_1 = /*model*/ ctx[0].skills;
@@ -4960,7 +4960,7 @@
     	};
     }
 
-    // (58:4) {#each model.languages as language}
+    // (57:4) {#each model.languages as language}
     function create_each_block(ctx) {
     	let skill;
     	let current;
@@ -4994,8 +4994,8 @@
     	};
     }
 
-    // (56:2) <Details title="Languages" size="col-lg-3 col-xs-6">
-    function create_default_slot_3(ctx) {
+    // (55:2) <Details title="Languages" size="col-lg-3 col-12">
+    function create_default_slot_7(ctx) {
     	let div;
     	let current;
     	let each_value = /*model*/ ctx[0].languages;
@@ -5083,7 +5083,167 @@
     	};
     }
 
-    // (63:2) <Details title="Aspects">
+    // (62:2) <Details title="Salvage" size="col-lg-3 col-12">
+    function create_default_slot_6(ctx) {
+    	let collection;
+    	let current;
+
+    	collection = new Collection({
+    			props: {
+    				model: /*model*/ ctx[0].resources.salvage,
+    				itemType: collectionTypes.simple
+    			}
+    		});
+
+    	return {
+    		c() {
+    			create_component(collection.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(collection, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const collection_changes = {};
+    			if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].resources.salvage;
+    			collection.$set(collection_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(collection.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(collection.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(collection, detaching);
+    		}
+    	};
+    }
+
+    // (65:2) <Details title="Specimens" size="col-lg-3 col-12">
+    function create_default_slot_5(ctx) {
+    	let collection;
+    	let current;
+
+    	collection = new Collection({
+    			props: {
+    				model: /*model*/ ctx[0].resources.specimens,
+    				itemType: collectionTypes.simple
+    			}
+    		});
+
+    	return {
+    		c() {
+    			create_component(collection.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(collection, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const collection_changes = {};
+    			if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].resources.specimens;
+    			collection.$set(collection_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(collection.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(collection.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(collection, detaching);
+    		}
+    	};
+    }
+
+    // (68:2) <Details title="Whispers" size="col-lg-3 col-12">
+    function create_default_slot_4(ctx) {
+    	let collection;
+    	let current;
+
+    	collection = new Collection({
+    			props: {
+    				model: /*model*/ ctx[0].resources.whispers,
+    				itemType: collectionTypes.simple
+    			}
+    		});
+
+    	return {
+    		c() {
+    			create_component(collection.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(collection, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const collection_changes = {};
+    			if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].resources.whispers;
+    			collection.$set(collection_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(collection.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(collection.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(collection, detaching);
+    		}
+    	};
+    }
+
+    // (71:2) <Details title="Charts" size="col-lg-3 col-12">
+    function create_default_slot_3(ctx) {
+    	let collection;
+    	let current;
+
+    	collection = new Collection({
+    			props: {
+    				model: /*model*/ ctx[0].resources.charts,
+    				itemType: collectionTypes.simple
+    			}
+    		});
+
+    	return {
+    		c() {
+    			create_component(collection.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(collection, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const collection_changes = {};
+    			if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].resources.charts;
+    			collection.$set(collection_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(collection.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(collection.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(collection, detaching);
+    		}
+    	};
+    }
+
+    // (74:2) <Details title="Aspects">
     function create_default_slot_2(ctx) {
     	let collection;
     	let current;
@@ -5124,7 +5284,7 @@
     	};
     }
 
-    // (69:2) <Details title="Temporary Tracks">
+    // (80:2) <Details title="Temporary Tracks">
     function create_default_slot_1(ctx) {
     	let collection;
     	let current;
@@ -5165,7 +5325,7 @@
     	};
     }
 
-    // (75:2) <Details title="Notes">
+    // (86:2) <Details title="Notes">
     function create_default_slot(ctx) {
     	let notes;
     	let current;
@@ -5226,6 +5386,14 @@
     	let details8;
     	let t10;
     	let details9;
+    	let t11;
+    	let details10;
+    	let t12;
+    	let details11;
+    	let t13;
+    	let details12;
+    	let t14;
+    	let details13;
     	let current;
 
     	function select_block_type(ctx, dirty) {
@@ -5253,7 +5421,7 @@
     			props: {
     				open: true,
     				title: "Character",
-    				$$slots: { default: [create_default_slot_9] },
+    				$$slots: { default: [create_default_slot_13] },
     				$$scope: { ctx }
     			}
     		});
@@ -5261,8 +5429,8 @@
     	details1 = new Details({
     			props: {
     				title: "Edges",
-    				size: "col-lg-3 col-xs-6",
-    				$$slots: { default: [create_default_slot_8] },
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_12] },
     				$$scope: { ctx }
     			}
     		});
@@ -5270,8 +5438,8 @@
     	details2 = new Details({
     			props: {
     				title: "Drives",
-    				size: "col-lg-3 col-xs-6",
-    				$$slots: { default: [create_default_slot_7] },
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_11] },
     				$$scope: { ctx }
     			}
     		});
@@ -5279,8 +5447,8 @@
     	details3 = new Details({
     			props: {
     				title: "Major Milestones",
-    				size: "col-lg-3 col-xs-6",
-    				$$slots: { default: [create_default_slot_6] },
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_10] },
     				$$scope: { ctx }
     			}
     		});
@@ -5288,8 +5456,8 @@
     	details4 = new Details({
     			props: {
     				title: "Minor Milestones",
-    				size: "col-lg-3 col-xs-6",
-    				$$slots: { default: [create_default_slot_5] },
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_9] },
     				$$scope: { ctx }
     			}
     		});
@@ -5297,8 +5465,8 @@
     	details5 = new Details({
     			props: {
     				title: "Skills",
-    				size: "col-lg-3 col-xs-6",
-    				$$slots: { default: [create_default_slot_4] },
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_8] },
     				$$scope: { ctx }
     			}
     		});
@@ -5306,13 +5474,49 @@
     	details6 = new Details({
     			props: {
     				title: "Languages",
-    				size: "col-lg-3 col-xs-6",
-    				$$slots: { default: [create_default_slot_3] },
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_7] },
     				$$scope: { ctx }
     			}
     		});
 
     	details7 = new Details({
+    			props: {
+    				title: "Salvage",
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_6] },
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	details8 = new Details({
+    			props: {
+    				title: "Specimens",
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_5] },
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	details9 = new Details({
+    			props: {
+    				title: "Whispers",
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_4] },
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	details10 = new Details({
+    			props: {
+    				title: "Charts",
+    				size: "col-lg-3 col-12",
+    				$$slots: { default: [create_default_slot_3] },
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	details11 = new Details({
     			props: {
     				title: "Aspects",
     				$$slots: { default: [create_default_slot_2] },
@@ -5320,7 +5524,7 @@
     			}
     		});
 
-    	details8 = new Details({
+    	details12 = new Details({
     			props: {
     				title: "Temporary Tracks",
     				$$slots: { default: [create_default_slot_1] },
@@ -5328,7 +5532,7 @@
     			}
     		});
 
-    	details9 = new Details({
+    	details13 = new Details({
     			props: {
     				title: "Notes",
     				$$slots: { default: [create_default_slot] },
@@ -5364,6 +5568,14 @@
     			create_component(details8.$$.fragment);
     			t10 = space();
     			create_component(details9.$$.fragment);
+    			t11 = space();
+    			create_component(details10.$$.fragment);
+    			t12 = space();
+    			create_component(details11.$$.fragment);
+    			t13 = space();
+    			create_component(details12.$$.fragment);
+    			t14 = space();
+    			create_component(details13.$$.fragment);
     			attr(div, "class", "row m-2");
     			attr(main, "id", "app");
     		},
@@ -5394,6 +5606,14 @@
     			mount_component(details8, div, null);
     			append(div, t10);
     			mount_component(details9, div, null);
+    			append(div, t11);
+    			mount_component(details10, div, null);
+    			append(div, t12);
+    			mount_component(details11, div, null);
+    			append(div, t13);
+    			mount_component(details12, div, null);
+    			append(div, t14);
+    			mount_component(details13, div, null);
     			current = true;
     		},
     		p(ctx, [dirty]) {
@@ -5476,6 +5696,34 @@
     			}
 
     			details9.$set(details9_changes);
+    			const details10_changes = {};
+
+    			if (dirty & /*$$scope, model*/ 257) {
+    				details10_changes.$$scope = { dirty, ctx };
+    			}
+
+    			details10.$set(details10_changes);
+    			const details11_changes = {};
+
+    			if (dirty & /*$$scope, model*/ 257) {
+    				details11_changes.$$scope = { dirty, ctx };
+    			}
+
+    			details11.$set(details11_changes);
+    			const details12_changes = {};
+
+    			if (dirty & /*$$scope, model*/ 257) {
+    				details12_changes.$$scope = { dirty, ctx };
+    			}
+
+    			details12.$set(details12_changes);
+    			const details13_changes = {};
+
+    			if (dirty & /*$$scope, model*/ 257) {
+    				details13_changes.$$scope = { dirty, ctx };
+    			}
+
+    			details13.$set(details13_changes);
     		},
     		i(local) {
     			if (current) return;
@@ -5490,6 +5738,10 @@
     			transition_in(details7.$$.fragment, local);
     			transition_in(details8.$$.fragment, local);
     			transition_in(details9.$$.fragment, local);
+    			transition_in(details10.$$.fragment, local);
+    			transition_in(details11.$$.fragment, local);
+    			transition_in(details12.$$.fragment, local);
+    			transition_in(details13.$$.fragment, local);
     			current = true;
     		},
     		o(local) {
@@ -5504,6 +5756,10 @@
     			transition_out(details7.$$.fragment, local);
     			transition_out(details8.$$.fragment, local);
     			transition_out(details9.$$.fragment, local);
+    			transition_out(details10.$$.fragment, local);
+    			transition_out(details11.$$.fragment, local);
+    			transition_out(details12.$$.fragment, local);
+    			transition_out(details13.$$.fragment, local);
     			current = false;
     		},
     		d(detaching) {
@@ -5522,6 +5778,10 @@
     			destroy_component(details7);
     			destroy_component(details8);
     			destroy_component(details9);
+    			destroy_component(details10);
+    			destroy_component(details11);
+    			destroy_component(details12);
+    			destroy_component(details13);
     		}
     	};
     }

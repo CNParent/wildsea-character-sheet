@@ -10,7 +10,6 @@
 	import Navbar from "./components/Navbar.svelte";
     import Notes from "./components/Notes.svelte";
 	import Skill from "./components/Skill.svelte";
-    import TextInput from "./components/TextInput.svelte";
 
 	let model = character();
 
@@ -28,37 +27,49 @@
 	<Navbar bind:model={model}></Navbar>
 	<div class="row m-2">
 		<Details open={true} title="Character"><Bio model={model} /></Details>
-		<Details title="Edges" size="col-lg-3 col-xs-6">
+		<Details title="Edges" size="col-lg-3 col-12">
 			<Collection
 				model={model.edges}
 				capacity={3}
 				itemType={collectionTypes.simple} />
 		</Details>
-		<Details title="Drives" size="col-lg-3 col-xs-6">
+		<Details title="Drives" size="col-lg-3 col-12">
 			<Collection
 				model={model.drives}
 				capacity={4}
 				itemType={collectionTypes.simple} />
 		</Details>
-		<Details title="Major Milestones" size="col-lg-3 col-xs-6">
+		<Details title="Major Milestones" size="col-lg-3 col-12">
 			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
 		</Details>
-		<Details title="Minor Milestones" size="col-lg-3 col-xs-6">
+		<Details title="Minor Milestones" size="col-lg-3 col-12">
 			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
 		</Details>
-		<Details title="Skills" size="col-lg-3 col-xs-6">
+		<Details title="Skills" size="col-lg-3 col-12">
 			<div class="row">
 				{#each model.skills as skill}
 				<Skill model={skill} />
 				{/each}
 			</div>
 		</Details>
-		<Details title="Languages" size="col-lg-3 col-xs-6">
+		<Details title="Languages" size="col-lg-3 col-12">
 			<div class="row">
 				{#each model.languages as language}
 				<Skill model={language} />
 				{/each}
 			</div>
+		</Details>
+		<Details title="Salvage" size="col-lg-3 col-12">
+			<Collection model={model.resources.salvage} itemType={collectionTypes.simple} />
+		</Details>
+		<Details title="Specimens" size="col-lg-3 col-12">
+			<Collection model={model.resources.specimens} itemType={collectionTypes.simple} />
+		</Details>
+		<Details title="Whispers" size="col-lg-3 col-12">
+			<Collection model={model.resources.whispers} itemType={collectionTypes.simple} />
+		</Details>
+		<Details title="Charts" size="col-lg-3 col-12">
+			<Collection model={model.resources.charts} itemType={collectionTypes.simple} />
 		</Details>
 		<Details title="Aspects">
 			<Collection 
