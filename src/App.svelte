@@ -28,29 +28,50 @@
 	<Navbar bind:model={model}></Navbar>
 	<div class="row m-2">
 		<Details open={true} title="Character"><Bio model={model} /></Details>
-		<Details title="Edges" size="col-lg-3 col-6">
-			{#each model.edges as edge}
-			<TextInput bind:content={edge} />
-			{/each}
+		<Details title="Edges" size="col-lg-3 col-xs-6">
+			<Collection
+				model={model.edges}
+				capacity={3}
+				itemType={collectionTypes.simple} />
 		</Details>
-		<Details title="Drives" size="col-lg-3 col-6">
-			{#each model.drives as drive}
-			<TextInput bind:content={drive} />
-			{/each}
+		<Details title="Drives" size="col-lg-3 col-xs-6">
+			<Collection
+				model={model.drives}
+				capacity={4}
+				itemType={collectionTypes.simple} />
 		</Details>
-		<Details open={false} title="Skills">
+		<Details title="Major Milestones" size="col-lg-3 col-xs-6">
+			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
+		</Details>
+		<Details title="Minor Milestones" size="col-lg-3 col-xs-6">
+			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
+		</Details>
+		<Details title="Skills" size="col-lg-3 col-xs-6">
 			<div class="row">
 				{#each model.skills as skill}
 				<Skill model={skill} />
 				{/each}
 			</div>
 		</Details>
-		<Details open={false} title="Aspects">
+		<Details title="Languages" size="col-lg-3 col-xs-6">
+			<div class="row">
+				{#each model.languages as language}
+				<Skill model={language} />
+				{/each}
+			</div>
+		</Details>
+		<Details title="Aspects">
 			<Collection 
 				model={model.aspects} 
 				capacity={7} 
 				itemType={collectionTypes.track}/>
 		</Details>
-		<Details open={false} title="Notes"><Notes notes={model.notes} /></Details>
+		<Details title="Temporary Tracks">
+			<Collection 
+				model={model.tracks} 
+				capacity={3} 
+				itemType={collectionTypes.track}/>
+		</Details>
+		<Details title="Notes"><Notes notes={model.notes} /></Details>
 	</div>
 </main>

@@ -1,3 +1,4 @@
+import languages from "./languages.js";
 import skills from "./skills.js";
 
 const character = () => ({
@@ -6,15 +7,15 @@ const character = () => ({
     origin: 'Spit-Born',
     post: 'Alchemist',
     info: '',
-    edges: ['grace','iron','instinct'],
+    edges: [],
     milestones: {
         minor: [],
         major: []
     },
-    drives: ['','','',''],
+    drives: [],
     mires: [],
     skills: skills(),
-    languages: [],
+    languages: languages(),
     resources: {
         salvage: [],
         specimens: [],

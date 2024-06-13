@@ -37,30 +37,28 @@
     <div>
         <TextInput bind:content={model.name} label='Name' />
     </div>
-    <div class="d-flex">
-        <div >
-            <div>
-                {#each arr as x,i}
-                <button on:click={() => handleClick(i)} class="bubble btn border border-dark" class:btn-dark={model.mark > i} class:btn-light={model.mark <= i}>
-                    {#if model.burn > i}
-                    &cross;
-                    {/if}
-                </button>
-                {/each}
+    <div>
+        <div>
+            {#each arr as x,i}
+            <button on:click={() => handleClick(i)} class="bubble btn border border-dark" class:btn-dark={model.mark > i} class:btn-light={model.mark <= i}>
+                {#if model.burn > i}
+                &cross;
+                {/if}
+            </button>
+            {/each}
+        </div>
+        <div class="mt-1">
+            <div class="btn-group">
+                <button on:click={() => resize(-1)} class="btn border btn-light" title="Decrease burn">Size-</button>
+                <button on:click={() => resize(1)} class="btn border btn-light" title="Increase burn">Size+</button>
             </div>
-            <div class="mt-1">
-                <div class="btn-group">
-                    <button on:click={() => resize(-1)} class="btn border btn-light" title="Decrease burn">Size-</button>
-                    <button on:click={() => resize(1)} class="btn border btn-light" title="Increase burn">Size+</button>
-                </div>
-                <div class="btn-group ml-1">
-                    <button on:click={() => burn(-1)} class="btn border btn-light" title="Decrease burn">Burn-</button>
-                    <button on:click={() => burn(1)} class="btn border btn-light" title="Increase burn">Burn+</button>
-                </div>
+            <div class="btn-group ml-1">
+                <button on:click={() => burn(-1)} class="btn border btn-light" title="Decrease burn">Burn-</button>
+                <button on:click={() => burn(1)} class="btn border btn-light" title="Increase burn">Burn+</button>
             </div>
         </div>
-        <div class="ml-1 flex-grow-1">
-            <TextArea bind:content={model.description} />
-        </div>
+    </div>
+    <div class="mt-1 flex-grow-1">
+        <TextArea bind:content={model.description} />
     </div>
 </div>
