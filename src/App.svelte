@@ -43,7 +43,7 @@
 			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
 		</Details>
 		<Details title="Minor Milestones" size="col-lg-3 col-12">
-			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
+			<Collection model={model.milestones.minor} itemType={collectionTypes.simple} />
 		</Details>
 		<Details title="Skills" size="col-lg-3 col-12">
 			<div class="row">

@@ -4804,7 +4804,7 @@
 
     	collection = new Collection({
     			props: {
-    				model: /*model*/ ctx[0].milestones.major,
+    				model: /*model*/ ctx[0].milestones.minor,
     				itemType: collectionTypes.simple
     			}
     		});
@@ -4819,7 +4819,7 @@
     		},
     		p(ctx, dirty) {
     			const collection_changes = {};
-    			if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].milestones.major;
+    			if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].milestones.minor;
     			collection.$set(collection_changes);
     		},
     		i(local) {
