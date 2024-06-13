@@ -3,6 +3,7 @@
 
     export let content = '';
     export let highlight = '';
+    export let label;
 
     let active = false;
     let control;
@@ -21,8 +22,10 @@
     });
 </script>
 
+{#if label}
+<span class="py-2 font-weight-bold"></span>
+{/if}
 {#if active}
-<span class="py-2 font-weight-bold"><slot></slot></span>
 <textarea 
     bind:this={control} 
     bind:value={content}
@@ -31,7 +34,6 @@
     on:keyup={resizeInput}
     class="flex-grow-1 form-control"></textarea>
 {:else}
-<span class="py-2 font-weight-bold"><slot></slot></span>
 <button class="btn btn-light border text-left align-top wrap w-100" style="min-height: 2.5em;" on:click={() => active = true}>
     {#if matches.length == 0}
         {content}

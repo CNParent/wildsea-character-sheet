@@ -3,14 +3,14 @@
 	import character from "./models/character.js"
 	import { theme } from './lib/styles.js'
 	import collectionTypes from "./lib/collectionTypes.js";
-	import skill from "./models/skill.js";
-    import track from "./models/track.js";
 
 	import Bio from "./components/Bio.svelte";
 	import Collection from "./components/Collection.svelte";
 	import Details from "./components/Details.svelte";
 	import Navbar from "./components/Navbar.svelte";
     import Notes from "./components/Notes.svelte";
+	import Skill from "./components/Skill.svelte";
+    import TextInput from "./components/TextInput.svelte";
 
 	let model = character();
 
@@ -28,11 +28,22 @@
 	<Navbar bind:model={model}></Navbar>
 	<div class="row m-2">
 		<Details open={true} title="Character"><Bio model={model} /></Details>
+		<Details title="Edges" size="col-lg-3 col-6">
+			{#each model.edges as edge}
+			<TextInput bind:content={edge} />
+			{/each}
+		</Details>
+		<Details title="Drives" size="col-lg-3 col-6">
+			{#each model.drives as drive}
+			<TextInput bind:content={drive} />
+			{/each}
+		</Details>
 		<Details open={false} title="Skills">
-			<Collection
-				model={model.skills}
-				capacity={20}
-				itemType={collectionTypes.skill}/>
+			<div class="row">
+				{#each model.skills as skill}
+				<Skill model={skill} />
+				{/each}
+			</div>
 		</Details>
 		<Details open={false} title="Aspects">
 			<Collection 

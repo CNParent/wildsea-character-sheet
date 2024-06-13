@@ -1,12 +1,10 @@
 <script>
     import ListItem from "./ListItem.svelte";
-    import Skill from "./Skill.svelte";
     import TextInput from "./TextInput.svelte";
     import Track from "./Track.svelte";
 
     import collectionTypes from "../lib/collectionTypes.js";
     import listActions from "../lib/listActions.js";
-    import skill from "../models/skill.js";
     import track from "../models/track.js";
 
     export let model = [];
@@ -18,7 +16,6 @@
         if (model.length == capacity) return;
 
         if (itemType == collectionTypes.simple) model.push('');
-        else if (itemType == collectionTypes.skill) model.push(skill());
         else if (itemType == collectionTypes.track) model.push(track());
 
         model = model;
@@ -49,8 +46,6 @@
     <ListItem item={item} move={move} remove={remove}>
         {#if itemType == collectionTypes.track}
         <Track model={item}></Track>
-        {:else if itemType  == collectionTypes.skill}
-        <Skill model={item}></Skill>
         {:else}
         <TextInput bind:value={item}></TextInput>
         {/if}

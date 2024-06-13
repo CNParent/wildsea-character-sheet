@@ -1,8 +1,6 @@
-const skill = () => ({
-    name: '',
-    size: 3,
-    mark: 0,
-    burn: 0
+const skill = (name) => ({
+    name,
+    level: 0
 });
 
 export default skill;

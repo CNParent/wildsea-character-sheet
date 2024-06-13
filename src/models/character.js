@@ -1,3 +1,5 @@
+import skills from "./skills.js";
+
 const character = () => ({
     name: '',
     bloodline: 'Ardent',
@@ -9,9 +11,9 @@ const character = () => ({
         minor: [],
         major: []
     },
-    drives: [],
+    drives: ['','','',''],
     mires: [],
-    skills: [],
+    skills: skills(),
     languages: [],
     resources: {
         salvage: [],
