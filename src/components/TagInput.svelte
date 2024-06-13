@@ -26,5 +26,5 @@
         </div>
     </div>
 {:else}
-    <button class="badge btn btn-light" on:click={() => active = true}>{content}</button>
+    <button class="badge btn btn-light m-1" on:click={() => active = true}>{content}</button>
 {/if}

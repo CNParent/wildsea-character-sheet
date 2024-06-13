@@ -1756,7 +1756,7 @@
     		c() {
     			button = element("button");
     			t = text(/*content*/ ctx[0]);
-    			attr(button, "class", "badge btn btn-light");
+    			attr(button, "class", "badge btn btn-light m-1");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
