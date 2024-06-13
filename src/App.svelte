@@ -2,8 +2,12 @@
 
 	import character from "./models/character.js"
 	import { theme } from './lib/styles.js'
+	import collectionTypes from "./lib/collectionTypes.js";
+	import skill from "./models/skill.js";
+    import track from "./models/track.js";
 
 	import Bio from "./components/Bio.svelte";
+	import Collection from "./components/Collection.svelte";
 	import Details from "./components/Details.svelte";
 	import Navbar from "./components/Navbar.svelte";
     import Notes from "./components/Notes.svelte";
@@ -24,6 +28,18 @@
 	<Navbar bind:model={model}></Navbar>
 	<div class="row m-2">
 		<Details open={true} title="Character"><Bio model={model} /></Details>
+		<Details open={false} title="Skills">
+			<Collection
+				model={model.skills}
+				capacity={20}
+				itemType={collectionTypes.skill}/>
+		</Details>
+		<Details open={false} title="Aspects">
+			<Collection 
+				model={model.aspects} 
+				capacity={7} 
+				itemType={collectionTypes.track}/>
+		</Details>
 		<Details open={false} title="Notes"><Notes notes={model.notes} /></Details>
 	</div>
 </main>

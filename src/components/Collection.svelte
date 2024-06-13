@@ -1,16 +1,26 @@
 <script>
-    import Item from "./Item.svelte";
     import ListItem from "./ListItem.svelte";
-    import listActions from "../lib/listActions.js";
+    import Skill from "./Skill.svelte";
+    import TextInput from "./TextInput.svelte";
+    import Track from "./Track.svelte";
 
-    export let model;
-    export let capacity;
-    export let title;
-    export let btnStyle;
+    import collectionTypes from "../lib/collectionTypes.js";
+    import listActions from "../lib/listActions.js";
+    import skill from "../models/skill.js";
+    import track from "../models/track.js";
+
+    export let model = [];
+    export let capacity = 10;
     export let update;
+    export let itemType = collectionTypes.simple;
 
     function add() {
-        model.push({ name: '', size: 1 });
+        if (model.length == capacity) return;
+
+        if (itemType == collectionTypes.simple) model.push('');
+        else if (itemType == collectionTypes.skill) model.push(skill());
+        else if (itemType == collectionTypes.track) model.push(track());
+
         model = model;
 
         if (update) update();
@@ -30,16 +40,19 @@
         if (update) update();
     }
 
-    $:totalSize = model.reduce((a,b) => a + b.size, 0);
-
 </script>
 <div class="d-flex align-items-end m-1">
-    <span>{title}</span>
-    <span title="capacity" class="ml-auto btn {btnStyle}">{totalSize}/{capacity}</span>
+    <span title="capacity" class="ml-auto btn btn-light">{model.length}/{capacity}</span>
     <button on:click={add} class="ml-1 btn btn-dark">Add</button>
 </div>
 {#each model as item}
     <ListItem item={item} move={move} remove={remove}>
-        <Item bind:item={item}></Item>
+        {#if itemType == collectionTypes.track}
+        <Track model={item}></Track>
+        {:else if itemType  == collectionTypes.skill}
+        <Skill model={item}></Skill>
+        {:else}
+        <TextInput bind:value={item}></TextInput>
+        {/if}
     </ListItem>
 {/each}

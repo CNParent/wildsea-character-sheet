@@ -96,7 +96,7 @@
     <div class="collapse navbar-collapse" style:display={navDisplay}>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a href='#' class="nav-link dropdown-toggle" class:disabled={!characters.length} on:blur={clearMenu} on:click={() => setMenu('characters')}>Characters</a>
+                <a href="#" class="nav-link dropdown-toggle" class:disabled={!characters.length} on:blur={clearMenu} on:click={() => setMenu('characters')}>Characters</a>
                 <div class="dropdown-menu" style="{`display: ${menu == 'characters' ? 'block' : 'none'}`}">
                     {#each characters as character}
                         <button on:blur={clearMenu} on:click={() => changeCharacter(character)} class="dropdown-item">{character}</button>
@@ -106,7 +106,7 @@
         </ul>
         <div class="navbar-nav">
             <div class="nav-item dropdown">
-                <button href='#' class="dropdown-toggle btn btn-light border border-dark" on:blur={clearMenu} on:click={() => setMenu('options')}>Options</button>
+                <button class="dropdown-toggle btn btn-light border border-dark" on:blur={clearMenu} on:click={() => setMenu('options')}>Options</button>
                 <div class="dropdown-menu" style="{`display: ${menu == 'options' ? 'block' : 'none'}`}">
                     <button class="dropdown-item" on:click={saveClick} on:blur={clearMenu}>Save</button>
                     <button class="dropdown-item" on:click={exportClick} on:blur={clearMenu}>Export</button>

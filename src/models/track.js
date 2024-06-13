@@ -1,7 +1,9 @@
 const track = () => ({
     name: '',
     details: '',
-    max: 0,
+    size: 4,
     mark: 0,
     burn: 0
 });
+
+export default track;

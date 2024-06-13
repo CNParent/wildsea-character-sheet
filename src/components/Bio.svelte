@@ -6,9 +6,9 @@
 
 </script>
 
-<TextInput bind:content={model.name}>Name</TextInput>
-<TextInput bind:content={model.bloodline}>Bloodline</TextInput>
-<TextInput bind:content={model.origin}>Origin</TextInput>
-<TextInput bind:content={model.post}>Post</TextInput>
+<TextInput bind:content={model.name} label='Name' />
+<TextInput bind:content={model.bloodline} label='Bloodline' />
+<TextInput bind:content={model.origin} label='Origin' />
+<TextInput bind:content={model.post} label='Post' />
 <hr />
-<TextArea bind:content={model.info}>Info</TextArea>
+<TextArea bind:content={model.info} label='Info' />
