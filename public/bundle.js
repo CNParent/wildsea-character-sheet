@@ -818,7 +818,7 @@
     }
 
     // (42:12) {#if i == 0}
-    function create_if_block_3$1(ctx) {
+    function create_if_block_3(ctx) {
     	let t;
 
     	return {
@@ -858,7 +858,7 @@
     }
 
     // (42:83) {#if i < matches.length - 1}
-    function create_if_block_2$2(ctx) {
+    function create_if_block_2$1(ctx) {
     	let t_value = /*content*/ ctx[0].substring(/*match*/ ctx[14].index + /*match*/ ctx[14][0].length, /*matches*/ ctx[2][/*i*/ ctx[16] + 1].index) + "";
     	let t;
 
@@ -884,10 +884,10 @@
     	let t_value = /*match*/ ctx[14][0] + "";
     	let t;
     	let if_block1_anchor;
-    	let if_block0 = /*i*/ ctx[16] == 0 && create_if_block_3$1(ctx);
+    	let if_block0 = /*i*/ ctx[16] == 0 && create_if_block_3(ctx);
 
     	function select_block_type_2(ctx, dirty) {
-    		if (/*i*/ ctx[16] < /*matches*/ ctx[2].length - 1) return create_if_block_2$2;
+    		if (/*i*/ ctx[16] < /*matches*/ ctx[2].length - 1) return create_if_block_2$1;
     		return create_else_block_2;
     	}
 
@@ -1091,7 +1091,7 @@
     	let t1;
     	let mounted;
     	let dispose;
-    	let if_block = /*label*/ ctx[1] && create_if_block_2$1(ctx);
+    	let if_block = /*label*/ ctx[1] && create_if_block_2(ctx);
 
     	return {
     		c() {
@@ -1118,7 +1118,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block_2$1(ctx);
+    					if_block = create_if_block_2(ctx);
     					if_block.c();
     					if_block.m(t0.parentNode, t0);
     				}
@@ -1200,7 +1200,7 @@
     }
 
     // (22:4) {#if label}
-    function create_if_block_2$1(ctx) {
+    function create_if_block_2(ctx) {
     	let span;
     	let t;
 
@@ -1756,7 +1756,7 @@
     		c() {
     			button = element("button");
     			t = text(/*content*/ ctx[0]);
-    			attr(button, "class", "badge btn btn-light m-1");
+    			attr(button, "class", "text-left flex-grow-1 btn btn-light mt-1");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -1780,10 +1780,9 @@
 
     // (20:0) {#if active}
     function create_if_block$8(ctx) {
-    	let div1;
+    	let div;
     	let input;
     	let t0;
-    	let div0;
     	let button0;
     	let t2;
     	let button1;
@@ -1792,31 +1791,28 @@
 
     	return {
     		c() {
-    			div1 = element("div");
+    			div = element("div");
     			input = element("input");
     			t0 = space();
-    			div0 = element("div");
     			button0 = element("button");
     			button0.textContent = "✓";
     			t2 = space();
     			button1 = element("button");
     			button1.textContent = "✗";
-    			attr(input, "class", "flex-grow-1 form-control m-2");
+    			attr(input, "class", "form-control");
     			attr(button0, "class", "btn btn-light border");
     			attr(button1, "class", "btn btn-danger border");
-    			attr(div0, "class", "btn-group");
-    			attr(div1, "class", "m-1 d-flex");
+    			attr(div, "class", "mt-1 d-flex flex-grow-1");
     		},
     		m(target, anchor) {
-    			insert(target, div1, anchor);
-    			append(div1, input);
+    			insert(target, div, anchor);
+    			append(div, input);
     			/*input_binding*/ ctx[5](input);
     			set_input_value(input, /*content*/ ctx[0]);
-    			append(div1, t0);
-    			append(div1, div0);
-    			append(div0, button0);
-    			append(div0, t2);
-    			append(div0, button1);
+    			append(div, t0);
+    			append(div, button0);
+    			append(div, t2);
+    			append(div, button1);
 
     			if (!mounted) {
     				dispose = [
@@ -1834,7 +1830,7 @@
     			}
     		},
     		d(detaching) {
-    			if (detaching) detach(div1);
+    			if (detaching) detach(div);
     			/*input_binding*/ ctx[5](null);
     			mounted = false;
     			run_all(dispose);
@@ -2357,106 +2353,41 @@
     	return child_ctx;
     }
 
-    // (41:0) {#if itemType != collectionTypes.simple}
-    function create_if_block_2(ctx) {
-    	let div;
-    	let t0;
+    // (42:0) {#if !capacity || model.length < capacity}
+    function create_if_block_1$2(ctx) {
     	let button;
     	let mounted;
     	let dispose;
-    	let if_block = /*capacity*/ ctx[1] && create_if_block_3(ctx);
 
     	return {
     		c() {
-    			div = element("div");
-    			if (if_block) if_block.c();
-    			t0 = space();
     			button = element("button");
     			button.textContent = "Add";
-    			attr(button, "class", "btn btn-dark");
-    			toggle_class(button, "ml-1", /*capacity*/ ctx[1]);
-    			toggle_class(button, "ml-auto", !/*capacity*/ ctx[1]);
-    			attr(div, "class", "d-flex align-items-end mb-1");
+    			attr(button, "class", "btn btn-light badge");
     		},
     		m(target, anchor) {
-    			insert(target, div, anchor);
-    			if (if_block) if_block.m(div, null);
-    			append(div, t0);
-    			append(div, button);
+    			insert(target, button, anchor);
 
     			if (!mounted) {
     				dispose = listen(button, "click", /*add*/ ctx[3]);
     				mounted = true;
     			}
     		},
-    		p(ctx, dirty) {
-    			if (/*capacity*/ ctx[1]) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
-    					if_block = create_if_block_3(ctx);
-    					if_block.c();
-    					if_block.m(div, t0);
-    				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
-    			}
-
-    			if (dirty & /*capacity*/ 2) {
-    				toggle_class(button, "ml-1", /*capacity*/ ctx[1]);
-    			}
-
-    			if (dirty & /*capacity*/ 2) {
-    				toggle_class(button, "ml-auto", !/*capacity*/ ctx[1]);
-    			}
-    		},
+    		p: noop,
     		d(detaching) {
-    			if (detaching) detach(div);
-    			if (if_block) if_block.d();
+    			if (detaching) detach(button);
     			mounted = false;
     			dispose();
     		}
     	};
     }
 
-    // (43:4) {#if capacity}
-    function create_if_block_3(ctx) {
-    	let span;
-    	let t0_value = /*model*/ ctx[0].length + "";
-    	let t0;
-    	let t1;
-    	let t2;
-
-    	return {
-    		c() {
-    			span = element("span");
-    			t0 = text(t0_value);
-    			t1 = text("/");
-    			t2 = text(/*capacity*/ ctx[1]);
-    			attr(span, "title", "capacity");
-    			attr(span, "class", "ml-auto btn btn-light");
-    		},
-    		m(target, anchor) {
-    			insert(target, span, anchor);
-    			append(span, t0);
-    			append(span, t1);
-    			append(span, t2);
-    		},
-    		p(ctx, dirty) {
-    			if (dirty & /*model*/ 1 && t0_value !== (t0_value = /*model*/ ctx[0].length + "")) set_data(t0, t0_value);
-    			if (dirty & /*capacity*/ 2) set_data(t2, /*capacity*/ ctx[1]);
-    		},
-    		d(detaching) {
-    			if (detaching) detach(span);
-    		}
-    	};
-    }
-
-    // (54:8) {:else}
+    // (50:8) {:else}
     function create_else_block$3(ctx) {
+    	let div;
     	let taginput;
     	let updating_content;
+    	let t;
     	let current;
 
     	function func() {
@@ -2478,10 +2409,15 @@
 
     	return {
     		c() {
+    			div = element("div");
     			create_component(taginput.$$.fragment);
+    			t = space();
+    			attr(div, "class", "d-flex");
     		},
     		m(target, anchor) {
-    			mount_component(taginput, target, anchor);
+    			insert(target, div, anchor);
+    			mount_component(taginput, div, null);
+    			append(div, t);
     			current = true;
     		},
     		p(new_ctx, dirty) {
@@ -2507,13 +2443,14 @@
     			current = false;
     		},
     		d(detaching) {
-    			destroy_component(taginput, detaching);
+    			if (detaching) detach(div);
+    			destroy_component(taginput);
     		}
     	};
     }
 
-    // (50:8) {#if itemType == collectionTypes.track}
-    function create_if_block_1$2(ctx) {
+    // (46:8) {#if itemType == collectionTypes.track}
+    function create_if_block$6(ctx) {
     	let listitem;
     	let current;
 
@@ -2560,18 +2497,21 @@
     	};
     }
 
-    // (51:12) <ListItem item={item} move={move} remove={remove}>
+    // (47:12) <ListItem item={item} move={move} remove={remove}>
     function create_default_slot$1(ctx) {
     	let track_1;
+    	let t;
     	let current;
     	track_1 = new Track({ props: { model: /*item*/ ctx[9] } });
 
     	return {
     		c() {
     			create_component(track_1.$$.fragment);
+    			t = space();
     		},
     		m(target, anchor) {
     			mount_component(track_1, target, anchor);
+    			insert(target, t, anchor);
     			current = true;
     		},
     		p(ctx, dirty) {
@@ -2590,17 +2530,18 @@
     		},
     		d(detaching) {
     			destroy_component(track_1, detaching);
+    			if (detaching) detach(t);
     		}
     	};
     }
 
-    // (49:0) {#each model as item}
+    // (45:0) {#each model as item}
     function create_each_block$6(ctx) {
     	let current_block_type_index;
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block_1$2, create_else_block$3];
+    	const if_block_creators = [create_if_block$6, create_else_block$3];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
@@ -2664,41 +2605,11 @@
     	};
     }
 
-    // (58:0) {#if itemType == collectionTypes.simple && (model.length < capacity || !capacity)}
-    function create_if_block$6(ctx) {
-    	let button;
-    	let mounted;
-    	let dispose;
-
-    	return {
-    		c() {
-    			button = element("button");
-    			button.textContent = "add";
-    			attr(button, "class", "btn btn-light m-1 badge");
-    		},
-    		m(target, anchor) {
-    			insert(target, button, anchor);
-
-    			if (!mounted) {
-    				dispose = listen(button, "click", /*add*/ ctx[3]);
-    				mounted = true;
-    			}
-    		},
-    		p: noop,
-    		d(detaching) {
-    			if (detaching) detach(button);
-    			mounted = false;
-    			dispose();
-    		}
-    	};
-    }
-
     function create_fragment$8(ctx) {
-    	let t0;
-    	let t1;
-    	let if_block1_anchor;
+    	let t;
+    	let each_1_anchor;
     	let current;
-    	let if_block0 = /*itemType*/ ctx[2] != collectionTypes.simple && create_if_block_2(ctx);
+    	let if_block = (!/*capacity*/ ctx[1] || /*model*/ ctx[0].length < /*capacity*/ ctx[1]) && create_if_block_1$2(ctx);
     	let each_value = /*model*/ ctx[0];
     	let each_blocks = [];
 
@@ -2710,24 +2621,20 @@
     		each_blocks[i] = null;
     	});
 
-    	let if_block1 = /*itemType*/ ctx[2] == collectionTypes.simple && (/*model*/ ctx[0].length < /*capacity*/ ctx[1] || !/*capacity*/ ctx[1]) && create_if_block$6(ctx);
-
     	return {
     		c() {
-    			if (if_block0) if_block0.c();
-    			t0 = space();
+    			if (if_block) if_block.c();
+    			t = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t1 = space();
-    			if (if_block1) if_block1.c();
-    			if_block1_anchor = empty();
+    			each_1_anchor = empty();
     		},
     		m(target, anchor) {
-    			if (if_block0) if_block0.m(target, anchor);
-    			insert(target, t0, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert(target, t, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				if (each_blocks[i]) {
@@ -2735,23 +2642,21 @@
     				}
     			}
 
-    			insert(target, t1, anchor);
-    			if (if_block1) if_block1.m(target, anchor);
-    			insert(target, if_block1_anchor, anchor);
+    			insert(target, each_1_anchor, anchor);
     			current = true;
     		},
     		p(ctx, [dirty]) {
-    			if (/*itemType*/ ctx[2] != collectionTypes.simple) {
-    				if (if_block0) {
-    					if_block0.p(ctx, dirty);
+    			if (!/*capacity*/ ctx[1] || /*model*/ ctx[0].length < /*capacity*/ ctx[1]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_2(ctx);
-    					if_block0.c();
-    					if_block0.m(t0.parentNode, t0);
+    					if_block = create_if_block_1$2(ctx);
+    					if_block.c();
+    					if_block.m(t.parentNode, t);
     				}
-    			} else if (if_block0) {
-    				if_block0.d(1);
-    				if_block0 = null;
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
     			}
 
     			if (dirty & /*model, move, remove, itemType, collectionTypes*/ 53) {
@@ -2768,7 +2673,7 @@
     						each_blocks[i] = create_each_block$6(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(t1.parentNode, t1);
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
     					}
     				}
 
@@ -2779,19 +2684,6 @@
     				}
 
     				check_outros();
-    			}
-
-    			if (/*itemType*/ ctx[2] == collectionTypes.simple && (/*model*/ ctx[0].length < /*capacity*/ ctx[1] || !/*capacity*/ ctx[1])) {
-    				if (if_block1) {
-    					if_block1.p(ctx, dirty);
-    				} else {
-    					if_block1 = create_if_block$6(ctx);
-    					if_block1.c();
-    					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
-    				}
-    			} else if (if_block1) {
-    				if_block1.d(1);
-    				if_block1 = null;
     			}
     		},
     		i(local) {
@@ -2813,12 +2705,10 @@
     			current = false;
     		},
     		d(detaching) {
-    			if (if_block0) if_block0.d(detaching);
-    			if (detaching) detach(t0);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach(t);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach(t1);
-    			if (if_block1) if_block1.d(detaching);
-    			if (detaching) detach(if_block1_anchor);
+    			if (detaching) detach(each_1_anchor);
     		}
     	};
     }
@@ -3066,12 +2956,12 @@
 
     function get_each_context$5(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[10] = list[i];
-    	child_ctx[12] = i;
+    	child_ctx[12] = list[i];
+    	child_ctx[14] = i;
     	return child_ctx;
     }
 
-    // (23:4) {:else}
+    // (29:4) {:else}
     function create_else_block$2(ctx) {
     	let button;
     	let t_value = /*model*/ ctx[0].name + "";
@@ -3083,14 +2973,14 @@
     		c() {
     			button = element("button");
     			t = text(t_value);
-    			attr(button, "class", "text-left border-right flex-grow-1 btn btn-light");
+    			attr(button, "class", "text-left flex-grow-1 btn btn-light");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
     			append(button, t);
 
     			if (!mounted) {
-    				dispose = listen(button, "click", /*click_handler_2*/ ctx[8]);
+    				dispose = listen(button, "click", /*click_handler_2*/ ctx[10]);
     				mounted = true;
     			}
     		},
@@ -3105,7 +2995,7 @@
     	};
     }
 
-    // (19:4) {#if editing}
+    // (25:4) {#if editing}
     function create_if_block$4(ctx) {
     	let input;
     	let t0;
@@ -3130,6 +3020,7 @@
     		},
     		m(target, anchor) {
     			insert(target, input, anchor);
+    			/*input_binding*/ ctx[6](input);
     			set_input_value(input, /*model*/ ctx[0].name);
     			insert(target, t0, anchor);
     			insert(target, button0, anchor);
@@ -3138,9 +3029,9 @@
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler*/ ctx[5]),
-    					listen(button0, "click", /*click_handler*/ ctx[6]),
-    					listen(button1, "click", /*click_handler_1*/ ctx[7])
+    					listen(input, "input", /*input_input_handler*/ ctx[7]),
+    					listen(button0, "click", /*click_handler*/ ctx[8]),
+    					listen(button1, "click", /*click_handler_1*/ ctx[9])
     				];
 
     				mounted = true;
@@ -3153,6 +3044,7 @@
     		},
     		d(detaching) {
     			if (detaching) detach(input);
+    			/*input_binding*/ ctx[6](null);
     			if (detaching) detach(t0);
     			if (detaching) detach(button0);
     			if (detaching) detach(t2);
@@ -3163,22 +3055,22 @@
     	};
     }
 
-    // (27:8) {#each arr as x,i}
+    // (33:8) {#each arr as x,i}
     function create_each_block$5(ctx) {
     	let button;
     	let mounted;
     	let dispose;
 
     	function click_handler_3() {
-    		return /*click_handler_3*/ ctx[9](/*i*/ ctx[12]);
+    		return /*click_handler_3*/ ctx[11](/*i*/ ctx[14]);
     	}
 
     	return {
     		c() {
     			button = element("button");
     			attr(button, "class", "bubble btn border border-dark");
-    			toggle_class(button, "btn-dark", /*model*/ ctx[0].mark > /*i*/ ctx[12]);
-    			toggle_class(button, "btn-light", /*model*/ ctx[0].mark <= /*i*/ ctx[12]);
+    			toggle_class(button, "btn-dark", /*model*/ ctx[0].mark > /*i*/ ctx[14]);
+    			toggle_class(button, "btn-light", /*model*/ ctx[0].mark <= /*i*/ ctx[14]);
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -3192,11 +3084,11 @@
     			ctx = new_ctx;
 
     			if (dirty & /*model*/ 1) {
-    				toggle_class(button, "btn-dark", /*model*/ ctx[0].mark > /*i*/ ctx[12]);
+    				toggle_class(button, "btn-dark", /*model*/ ctx[0].mark > /*i*/ ctx[14]);
     			}
 
     			if (dirty & /*model*/ 1) {
-    				toggle_class(button, "btn-light", /*model*/ ctx[0].mark <= /*i*/ ctx[12]);
+    				toggle_class(button, "btn-light", /*model*/ ctx[0].mark <= /*i*/ ctx[14]);
     			}
     		},
     		d(detaching) {
@@ -3219,7 +3111,7 @@
 
     	let current_block_type = select_block_type(ctx);
     	let if_block = current_block_type(ctx);
-    	let each_value = /*arr*/ ctx[3];
+    	let each_value = /*arr*/ ctx[4];
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value.length; i += 1) {
@@ -3266,8 +3158,8 @@
     				}
     			}
 
-    			if (dirty & /*model, handleClick, arr*/ 25) {
-    				each_value = /*arr*/ ctx[3];
+    			if (dirty & /*model, handleClick, arr*/ 49) {
+    				each_value = /*arr*/ ctx[4];
     				let i;
 
     				for (i = 0; i < each_value.length; i += 1) {
@@ -3306,9 +3198,21 @@
     	let { model = mire() } = $$props;
     	let { remove } = $$props;
     	let editing = false;
+    	let control;
 
     	function handleClick(i) {
     		$$invalidate(0, model.mark = model.mark == i + 1 ? i : i + 1, model);
+    	}
+
+    	afterUpdate(() => {
+    		if (control) control.focus();
+    	});
+
+    	function input_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			control = $$value;
+    			$$invalidate(3, control);
+    		});
     	}
 
     	function input_input_handler() {
@@ -3326,14 +3230,16 @@
     		if ('remove' in $$props) $$invalidate(1, remove = $$props.remove);
     	};
 
-    	$$invalidate(3, arr = [...new Array(maxMark)]);
+    	$$invalidate(4, arr = [...new Array(maxMark)]);
 
     	return [
     		model,
     		remove,
     		editing,
+    		control,
     		arr,
     		handleClick,
+    		input_binding,
     		input_input_handler,
     		click_handler,
     		click_handler_1,

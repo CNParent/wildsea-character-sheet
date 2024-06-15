@@ -1,27 +1,33 @@
 <script>
     const maxMark = 2;
 
+    import { afterUpdate } from 'svelte';
     import mire from "../models/mire.js";
 
     export let model = mire();
     export let remove;
 
     let editing = false;
+    let control;
 
     $:arr = [...new Array(maxMark)];
 
     function handleClick(i) {
         model.mark = model.mark == i + 1 ? i : i + 1;
     }
+
+    afterUpdate(() => {
+        if (control) control.focus();
+    });
 </script>
 
 <div class="d-flex mt-1">
     {#if editing}
-    <input class="form-control" bind:value={model.name} />
+    <input bind:this={control} class="form-control" bind:value={model.name} />
     <button on:click={() => editing = false} class="btn btn-light">&check;</button>
     <button on:click={() => remove(model)} class="btn btn-danger">&cross;</button>
     {:else}
-    <button on:click={() => editing = true} class="text-left border-right flex-grow-1 btn btn-light">{model.name}</button>
+    <button on:click={() => editing = true} class="text-left flex-grow-1 btn btn-light">{model.name}</button>
     {/if}
     <div class="align-self-center ml-1 flex-shrink-0" style="width: 4.0em;">
         {#each arr as x,i}

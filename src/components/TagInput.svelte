@@ -18,13 +18,12 @@
 </script>
 
 {#if active}
-    <div class="m-1 d-flex">
-        <input bind:this={control} class="flex-grow-1 form-control m-2" bind:value={content}>
-        <div class="btn-group">
-            <button class="btn btn-light border" on:click={handleApply}>&check;</button>
-            <button class="btn btn-danger border" on:click={() => remove()}>&cross;</button>
-        </div>
+    <div class="mt-1 d-flex flex-grow-1">
+        <input bind:this={control} class="form-control" bind:value={content}>
+        <button class="btn btn-light border" on:click={handleApply}>&check;</button>
+        <button class="btn btn-danger border" on:click={() => remove()}>&cross;</button>
     </div>
 {:else}
-    <button class="badge btn btn-light m-1" on:click={() => active = true}>{content}</button>
+    <button class="text-left flex-grow-1 btn btn-light mt-1" on:click={() => active = true}>{content}</button>
 {/if}
+

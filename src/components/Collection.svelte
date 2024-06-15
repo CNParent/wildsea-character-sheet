@@ -38,13 +38,9 @@
     }
 
 </script>
-{#if itemType != collectionTypes.simple}
-<div class="d-flex align-items-end mb-1">
-    {#if capacity}
-    <span title="capacity" class="ml-auto btn btn-light">{model.length}/{capacity}</span>
-    {/if}
-    <button on:click={add} class:ml-1={capacity} class:ml-auto={!capacity} class="btn btn-dark">Add</button>
-</div>
+
+{#if !capacity || model.length < capacity}
+<button on:click={add} class="btn btn-light badge">Add</button>
 {/if}
 {#each model as item}
         {#if itemType == collectionTypes.track}
@@ -52,9 +48,8 @@
                 <Track model={item}></Track>
             </ListItem>
         {:else}
-            <TagInput bind:content={item} remove={() => remove(item)} />
+            <div class="d-flex">
+                <TagInput bind:content={item} remove={() => remove(item)} />
+            </div>
         {/if}
 {/each}
-{#if itemType == collectionTypes.simple && (model.length < capacity || !capacity)}
-<button on:click={add} class="btn btn-light m-1 badge">add</button>
-{/if}
