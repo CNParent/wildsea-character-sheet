@@ -7,6 +7,7 @@
 	import Bio from "./components/Bio.svelte";
 	import Collection from "./components/Collection.svelte";
 	import Details from "./components/Details.svelte";
+	import Mires from "./components/Mires.svelte";
 	import Navbar from "./components/Navbar.svelte";
     import Notes from "./components/Notes.svelte";
 	import Skill from "./components/Skill.svelte";
@@ -26,7 +27,9 @@
 <main id="app">
 	<Navbar bind:model={model}></Navbar>
 	<div class="row m-2">
-		<Details open={true} title="Character"><Bio model={model} /></Details>
+		<Details open={true} title="Character" size="col-lg-3 col-12">
+			<Bio model={model} />
+		</Details>
 		<Details title="Edges" size="col-lg-3 col-12">
 			<Collection
 				model={model.edges}
@@ -38,6 +41,9 @@
 				model={model.drives}
 				capacity={4}
 				itemType={collectionTypes.simple} />
+		</Details>
+		<Details title="Mires" size="col-lg-3 col-12">
+			<Mires model={model.mires} />
 		</Details>
 		<Details title="Major Milestones" size="col-lg-3 col-12">
 			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
