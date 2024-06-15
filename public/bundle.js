@@ -3084,7 +3084,6 @@
     			button = element("button");
     			t = text(t_value);
     			attr(button, "class", "text-left border-right flex-grow-1 btn btn-light");
-    			set_style(button, "height", "2.5em");
     		},
     		m(target, anchor) {
     			insert(target, button, anchor);
@@ -3125,7 +3124,7 @@
     			t2 = space();
     			button1 = element("button");
     			button1.textContent = "✗";
-    			attr(input, "class", "align-self-center form-control");
+    			attr(input, "class", "form-control");
     			attr(button0, "class", "btn btn-light");
     			attr(button1, "class", "btn btn-danger");
     		},
@@ -3238,9 +3237,9 @@
     				each_blocks[i].c();
     			}
 
-    			attr(div0, "class", "align-self-center ml-1");
-    			set_style(div0, "width", "5.0em");
-    			attr(div1, "class", "d-flex m-1");
+    			attr(div0, "class", "align-self-center ml-1 flex-shrink-0");
+    			set_style(div0, "width", "4.0em");
+    			attr(div1, "class", "d-flex mt-1");
     		},
     		m(target, anchor) {
     			insert(target, div1, anchor);
