@@ -3367,7 +3367,7 @@
     	return {
     		c() {
     			button = element("button");
-    			button.textContent = "Add Mire";
+    			button.textContent = "Add";
     			attr(button, "class", "btn btn-light badge");
     		},
     		m(target, anchor) {

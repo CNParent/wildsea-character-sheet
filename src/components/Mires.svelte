@@ -19,7 +19,7 @@
 </script>
 
 {#if model.length < maxMires}
-<button on:click={add} class="btn btn-light badge">Add Mire</button>
+<button on:click={add} class="btn btn-light badge">Add</button>
 {/if}
 {#each model as item}
 <Mire model={item} remove={remove} />
