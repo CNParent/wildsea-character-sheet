@@ -3507,7 +3507,7 @@
             file.onchange = (e) => {
                 e.target.files[0].text().then((t) => {
                     let key = JSON.parse(t).name;
-                    localStorage.setItem(key, t);
+                    localStorage.setItem(`${key}.wildsea`, t);
                     done(`${key} added to character storage`);
                 });
             };
