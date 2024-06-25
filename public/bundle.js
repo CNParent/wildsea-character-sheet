@@ -1266,7 +1266,7 @@
     			div = element("div");
     			if_block.c();
     			attr(div, "class", "d-flex mb-1 border-bottom");
-    			set_style(div, "height", "2.5em");
+    			set_style(div, "min-height", "2.5em");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
