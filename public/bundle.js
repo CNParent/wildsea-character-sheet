@@ -5739,7 +5739,6 @@
     	collection = new Collection({
     			props: {
     				model: /*model*/ ctx[0].tracks,
-    				capacity: 3,
     				itemType: collectionTypes.track
     			}
     		});
@@ -5772,7 +5771,7 @@
     	};
     }
 
-    // (92:2) <Details title="Notes">
+    // (91:2) <Details title="Notes">
     function create_default_slot(ctx) {
     	let notes;
     	let current;

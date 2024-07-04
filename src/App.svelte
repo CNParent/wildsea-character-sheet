@@ -86,7 +86,6 @@
 		<Details title="Temporary Tracks">
 			<Collection 
 				model={model.tracks} 
-				capacity={3} 
 				itemType={collectionTypes.track}/>
 		</Details>
 		<Details title="Notes"><Notes notes={model.notes} /></Details>
