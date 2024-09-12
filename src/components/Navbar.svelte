@@ -75,9 +75,11 @@
     loadCharacterList();
 
     let autoSave = window.setInterval(() => {
+        let saved = characters.find(x => x == `${model.name}.wildsea`) != null;
+        if (!saved) return;
+        
         console.log(`Autosave (${model.name})`);
-        let saved = characters.find(x => x == model.name) != null;
-        if (saved) actions.save(model);
+        actions.save(model);
     }, autosaveInterval);
 
     afterUpdate(() => {
@@ -96,6 +98,7 @@
     <div class="collapse navbar-collapse" style:display={navDisplay}>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
+                <!-- svelte-ignore a11y-invalid-attribute -->
                 <a href="#" class="nav-link dropdown-toggle" class:disabled={!characters.length} on:blur={clearMenu} on:click={() => setMenu('characters')}>Characters</a>
                 <div class="dropdown-menu" style="{`display: ${menu == 'characters' ? 'block' : 'none'}`}">
                     {#each characters as character}
