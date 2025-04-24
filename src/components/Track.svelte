@@ -4,6 +4,10 @@
     import TextInput from "./TextInput.svelte";
 
     export let model = track();
+    export let remove = () => {};
+    export let move = (n) => {};
+
+    let editing = false;
 
     $:arr = [...new Array(model.size)];
     
@@ -33,7 +37,8 @@
     }
 </script>
 
-<div class="flew-grow-1">
+{#if editing}
+<div class="col-12 border p-3 mt-1">
     <div>
         <TextInput bind:content={model.name} label='Name' />
     </div>
@@ -61,4 +66,24 @@
     <div class="mt-1 flex-grow-1">
         <TextArea bind:content={model.description} />
     </div>
+    <div class="mt-1 flex-grow 1">
+        <button on:click={() => editing = false} class="btn border btn-light">Done</button>
+        <button on:click={() => move(-1)} class="btn border btn-light">&uarr;</button>
+        <button on:click={() => move(1)} class="btn border btn-light">&darr;</button>
+        <button on:click={() => { editing = false; remove(); }} class="btn border btn-danger">Remove</button>
+    </div>
 </div>
+{:else}
+<div class="d-flex flex-grow-1 mt-1">
+    <button on:click={() => editing = true} class="text-left flex-grow-1 btn btn-light" style="min-height: 2.2em">{model.name}</button>
+    <div class="align-self-center ml-1 flex-shrink-0">
+        {#each arr as x,i}
+        <button on:click={() => handleClick(i)} class="bubble btn border border-dark" class:btn-dark={model.mark > i} class:btn-light={model.mark <= i}>
+            {#if model.burn > i}
+            &cross;
+            {/if}
+        </button>
+        {/each}
+    </div>
+</div>
+{/if}

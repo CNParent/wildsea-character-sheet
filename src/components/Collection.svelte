@@ -1,5 +1,4 @@
 <script>
-    import ListItem from "./ListItem.svelte";
     import TagInput from "./TagInput.svelte";
     import Track from "./Track.svelte";
 
@@ -17,7 +16,7 @@
     function add() {
         if (capacity && model.length == capacity) return;
 
-        if (itemType == collectionTypes.simple) model.push('click to edit');
+        if (itemType == collectionTypes.simple) model.push('');
         else if (itemType == collectionTypes.track) model.push(track());
 
         model = model;
@@ -46,13 +45,11 @@
 <button on:click={add} class="btn btn-light badge">Add</button>
 {/if}
 {#each model as item}
+    <div class="d-flex">
         {#if itemType == collectionTypes.track}
-            <ListItem item={item} move={move} remove={remove}>
-                <Track model={item}></Track>
-            </ListItem>
+            <Track model={item} move={(n) => move(n, item)} remove={() => remove(item)}></Track>
         {:else}
-            <div class="d-flex">
-                <TagInput bind:content={item} remove={() => remove(item)} />
-            </div>
+            <TagInput bind:content={item} remove={() => remove(item)} />
         {/if}
+    </div>
 {/each}
