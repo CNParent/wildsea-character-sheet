@@ -46,10 +46,18 @@
 			<Mires model={model.mires} />
 		</Details>
 		<Details title="Major Milestones" size="col-lg-3 col-12">
-			<Collection model={model.milestones.major} itemType={collectionTypes.simple} />
+			<Collection model={model.milestones.major} itemType={collectionTypes.simple} afterRemove={(item => model.milestones.usedMajor.push(item))} />
+			<hr />
+			<Details title="Used" size="col-12">
+				<Collection model={model.milestones.usedMajor} itemType={collectionTypes.simple} allowAdd={false} />
+			</Details>
 		</Details>
 		<Details title="Minor Milestones" size="col-lg-3 col-12">
-			<Collection model={model.milestones.minor} itemType={collectionTypes.simple} />
+			<Collection model={model.milestones.minor} itemType={collectionTypes.simple} afterRemove={(item => model.milestones.usedMinor.push(item))}  />
+			<hr />
+			<Details title="Used" size="col-12">
+				<Collection model={model.milestones.usedMinor} itemType={collectionTypes.simple} allowAdd={false} />
+			</Details>
 		</Details>
 		<Details title="Skills" size="col-lg-3 col-12">
 			<div class="row">

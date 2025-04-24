@@ -883,7 +883,9 @@
 	    edges: [],
 	    milestones: {
 	        minor: [],
-	        major: []
+	        major: [],
+	        usedMinor: [],
+	        usedMajor: []
 	    },
 	    drives: [],
 	    mires: [],
@@ -2703,13 +2705,13 @@
 
 	function get_each_context$6(ctx, list, i) {
 		const child_ctx = ctx.slice();
-		child_ctx[9] = list[i];
-		child_ctx[10] = list;
-		child_ctx[11] = i;
+		child_ctx[11] = list[i];
+		child_ctx[12] = list;
+		child_ctx[13] = i;
 		return child_ctx;
 	}
 
-	// (42:0) {#if !capacity || model.length < capacity}
+	// (45:0) {#if (!capacity || model.length < capacity) && allowAdd}
 	function create_if_block_1$2(ctx) {
 		let button;
 		let mounted;
@@ -2725,7 +2727,7 @@
 				insert(target, button, anchor);
 
 				if (!mounted) {
-					dispose = listen(button, "click", /*add*/ ctx[3]);
+					dispose = listen(button, "click", /*add*/ ctx[4]);
 					mounted = true;
 				}
 			},
@@ -2741,7 +2743,7 @@
 		};
 	}
 
-	// (50:8) {:else}
+	// (53:8) {:else}
 	function create_else_block$3(ctx) {
 		let div;
 		let taginput;
@@ -2750,17 +2752,17 @@
 		let current;
 
 		function func() {
-			return /*func*/ ctx[7](/*item*/ ctx[9]);
+			return /*func*/ ctx[9](/*item*/ ctx[11]);
 		}
 
 		function taginput_content_binding(value) {
-			/*taginput_content_binding*/ ctx[8](value, /*item*/ ctx[9], /*each_value*/ ctx[10], /*item_index*/ ctx[11]);
+			/*taginput_content_binding*/ ctx[10](value, /*item*/ ctx[11], /*each_value*/ ctx[12], /*item_index*/ ctx[13]);
 		}
 
 		let taginput_props = { remove: func };
 
-		if (/*item*/ ctx[9] !== void 0) {
-			taginput_props.content = /*item*/ ctx[9];
+		if (/*item*/ ctx[11] !== void 0) {
+			taginput_props.content = /*item*/ ctx[11];
 		}
 
 		taginput = new TagInput({ props: taginput_props });
@@ -2786,7 +2788,7 @@
 
 				if (!updating_content && dirty & /*model*/ 1) {
 					updating_content = true;
-					taginput_changes.content = /*item*/ ctx[9];
+					taginput_changes.content = /*item*/ ctx[11];
 					add_flush_callback(() => updating_content = false);
 				}
 
@@ -2811,16 +2813,16 @@
 		};
 	}
 
-	// (46:8) {#if itemType == collectionTypes.track}
+	// (49:8) {#if itemType == collectionTypes.track}
 	function create_if_block$6(ctx) {
 		let listitem;
 		let current;
 
 		listitem = new ListItem({
 				props: {
-					item: /*item*/ ctx[9],
-					move: /*move*/ ctx[4],
-					remove: /*remove*/ ctx[5],
+					item: /*item*/ ctx[11],
+					move: /*move*/ ctx[5],
+					remove: /*remove*/ ctx[6],
 					$$slots: { default: [create_default_slot$1] },
 					$$scope: { ctx }
 				}
@@ -2836,9 +2838,9 @@
 			},
 			p(ctx, dirty) {
 				const listitem_changes = {};
-				if (dirty & /*model*/ 1) listitem_changes.item = /*item*/ ctx[9];
+				if (dirty & /*model*/ 1) listitem_changes.item = /*item*/ ctx[11];
 
-				if (dirty & /*$$scope, model*/ 4097) {
+				if (dirty & /*$$scope, model*/ 16385) {
 					listitem_changes.$$scope = { dirty, ctx };
 				}
 
@@ -2859,12 +2861,12 @@
 		};
 	}
 
-	// (47:12) <ListItem item={item} move={move} remove={remove}>
+	// (50:12) <ListItem item={item} move={move} remove={remove}>
 	function create_default_slot$1(ctx) {
 		let track_1;
 		let t;
 		let current;
-		track_1 = new Track({ props: { model: /*item*/ ctx[9] } });
+		track_1 = new Track({ props: { model: /*item*/ ctx[11] } });
 
 		return {
 			c() {
@@ -2878,7 +2880,7 @@
 			},
 			p(ctx, dirty) {
 				const track_1_changes = {};
-				if (dirty & /*model*/ 1) track_1_changes.model = /*item*/ ctx[9];
+				if (dirty & /*model*/ 1) track_1_changes.model = /*item*/ ctx[11];
 				track_1.$set(track_1_changes);
 			},
 			i(local) {
@@ -2900,7 +2902,7 @@
 		};
 	}
 
-	// (45:0) {#each model as item}
+	// (48:0) {#each model as item}
 	function create_each_block$6(ctx) {
 		let current_block_type_index;
 		let if_block;
@@ -2977,7 +2979,7 @@
 		let t;
 		let each_1_anchor;
 		let current;
-		let if_block = (!/*capacity*/ ctx[1] || /*model*/ ctx[0].length < /*capacity*/ ctx[1]) && create_if_block_1$2(ctx);
+		let if_block = (!/*capacity*/ ctx[1] || /*model*/ ctx[0].length < /*capacity*/ ctx[1]) && /*allowAdd*/ ctx[3] && create_if_block_1$2(ctx);
 		let each_value = ensure_array_like(/*model*/ ctx[0]);
 		let each_blocks = [];
 
@@ -3014,7 +3016,7 @@
 				current = true;
 			},
 			p(ctx, [dirty]) {
-				if (!/*capacity*/ ctx[1] || /*model*/ ctx[0].length < /*capacity*/ ctx[1]) {
+				if ((!/*capacity*/ ctx[1] || /*model*/ ctx[0].length < /*capacity*/ ctx[1]) && /*allowAdd*/ ctx[3]) {
 					if (if_block) {
 						if_block.p(ctx, dirty);
 					} else {
@@ -3027,7 +3029,7 @@
 					if_block = null;
 				}
 
-				if (dirty & /*model, move, remove, itemType*/ 53) {
+				if (dirty & /*model, move, remove, itemType*/ 101) {
 					each_value = ensure_array_like(/*model*/ ctx[0]);
 					let i;
 
@@ -3089,6 +3091,8 @@
 		let { capacity } = $$props;
 		let { update } = $$props;
 		let { itemType = collectionTypes.simple } = $$props;
+		let { afterRemove } = $$props;
+		let { allowAdd = true } = $$props;
 
 		function add() {
 			if (capacity && model.length == capacity) return;
@@ -3106,6 +3110,7 @@
 		function remove(item) {
 			listActions.remove(model, item);
 			$$invalidate(0, model);
+			if (afterRemove) afterRemove(item);
 			if (update) update();
 		}
 
@@ -3119,18 +3124,22 @@
 		$$self.$$set = $$props => {
 			if ('model' in $$props) $$invalidate(0, model = $$props.model);
 			if ('capacity' in $$props) $$invalidate(1, capacity = $$props.capacity);
-			if ('update' in $$props) $$invalidate(6, update = $$props.update);
+			if ('update' in $$props) $$invalidate(7, update = $$props.update);
 			if ('itemType' in $$props) $$invalidate(2, itemType = $$props.itemType);
+			if ('afterRemove' in $$props) $$invalidate(8, afterRemove = $$props.afterRemove);
+			if ('allowAdd' in $$props) $$invalidate(3, allowAdd = $$props.allowAdd);
 		};
 
 		return [
 			model,
 			capacity,
 			itemType,
+			allowAdd,
 			add,
 			move,
 			remove,
 			update,
+			afterRemove,
 			func,
 			taginput_content_binding
 		];
@@ -3143,8 +3152,10 @@
 			init(this, options, instance$8, create_fragment$8, safe_not_equal, {
 				model: 0,
 				capacity: 1,
-				update: 6,
-				itemType: 2
+				update: 7,
+				itemType: 2,
+				afterRemove: 8,
+				allowAdd: 3
 			});
 		}
 	}
@@ -5440,13 +5451,13 @@
 
 	function get_each_context(ctx, list, i) {
 		const child_ctx = ctx.slice();
-		child_ctx[2] = list[i];
+		child_ctx[4] = list[i];
 		return child_ctx;
 	}
 
 	function get_each_context_1(ctx, list, i) {
 		const child_ctx = ctx.slice();
-		child_ctx[5] = list[i];
+		child_ctx[7] = list[i];
 		return child_ctx;
 	}
 
@@ -5495,7 +5506,7 @@
 	}
 
 	// (30:2) <Details open={true} title="Character" size="col-lg-3 col-12">
-	function create_default_slot_14(ctx) {
+	function create_default_slot_16(ctx) {
 		let bio;
 		let current;
 		bio = new Bio({ props: { model: /*model*/ ctx[0] } });
@@ -5529,7 +5540,7 @@
 	}
 
 	// (33:2) <Details title="Edges" size="col-lg-3 col-12">
-	function create_default_slot_13(ctx) {
+	function create_default_slot_15(ctx) {
 		let collection;
 		let current;
 
@@ -5570,7 +5581,7 @@
 	}
 
 	// (39:2) <Details title="Drives" size="col-lg-3 col-12">
-	function create_default_slot_12(ctx) {
+	function create_default_slot_14(ctx) {
 		let collection;
 		let current;
 
@@ -5611,7 +5622,7 @@
 	}
 
 	// (45:2) <Details title="Mires" size="col-lg-3 col-12">
-	function create_default_slot_11(ctx) {
+	function create_default_slot_13(ctx) {
 		let mires;
 		let current;
 		mires = new Mires({ props: { model: /*model*/ ctx[0].mires } });
@@ -5644,15 +5655,136 @@
 		};
 	}
 
+	// (51:3) <Details title="Used" size="col-12">
+	function create_default_slot_12(ctx) {
+		let collection;
+		let current;
+
+		collection = new Collection({
+				props: {
+					model: /*model*/ ctx[0].milestones.usedMajor,
+					itemType: collectionTypes.simple,
+					allowAdd: false
+				}
+			});
+
+		return {
+			c() {
+				create_component(collection.$$.fragment);
+			},
+			m(target, anchor) {
+				mount_component(collection, target, anchor);
+				current = true;
+			},
+			p(ctx, dirty) {
+				const collection_changes = {};
+				if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].milestones.usedMajor;
+				collection.$set(collection_changes);
+			},
+			i(local) {
+				if (current) return;
+				transition_in(collection.$$.fragment, local);
+				current = true;
+			},
+			o(local) {
+				transition_out(collection.$$.fragment, local);
+				current = false;
+			},
+			d(detaching) {
+				destroy_component(collection, detaching);
+			}
+		};
+	}
+
 	// (48:2) <Details title="Major Milestones" size="col-lg-3 col-12">
+	function create_default_slot_11(ctx) {
+		let collection;
+		let t0;
+		let hr;
+		let t1;
+		let details;
+		let current;
+
+		collection = new Collection({
+				props: {
+					model: /*model*/ ctx[0].milestones.major,
+					itemType: collectionTypes.simple,
+					afterRemove: /*func*/ ctx[2]
+				}
+			});
+
+		details = new Details({
+				props: {
+					title: "Used",
+					size: "col-12",
+					$$slots: { default: [create_default_slot_12] },
+					$$scope: { ctx }
+				}
+			});
+
+		return {
+			c() {
+				create_component(collection.$$.fragment);
+				t0 = space();
+				hr = element("hr");
+				t1 = space();
+				create_component(details.$$.fragment);
+			},
+			m(target, anchor) {
+				mount_component(collection, target, anchor);
+				insert(target, t0, anchor);
+				insert(target, hr, anchor);
+				insert(target, t1, anchor);
+				mount_component(details, target, anchor);
+				current = true;
+			},
+			p(ctx, dirty) {
+				const collection_changes = {};
+				if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].milestones.major;
+				if (dirty & /*model*/ 1) collection_changes.afterRemove = /*func*/ ctx[2];
+				collection.$set(collection_changes);
+				const details_changes = {};
+
+				if (dirty & /*$$scope, model*/ 1025) {
+					details_changes.$$scope = { dirty, ctx };
+				}
+
+				details.$set(details_changes);
+			},
+			i(local) {
+				if (current) return;
+				transition_in(collection.$$.fragment, local);
+				transition_in(details.$$.fragment, local);
+				current = true;
+			},
+			o(local) {
+				transition_out(collection.$$.fragment, local);
+				transition_out(details.$$.fragment, local);
+				current = false;
+			},
+			d(detaching) {
+				if (detaching) {
+					detach(t0);
+					detach(hr);
+					detach(t1);
+				}
+
+				destroy_component(collection, detaching);
+				destroy_component(details, detaching);
+			}
+		};
+	}
+
+	// (58:3) <Details title="Used" size="col-12">
 	function create_default_slot_10(ctx) {
 		let collection;
 		let current;
 
 		collection = new Collection({
 				props: {
-					model: /*model*/ ctx[0].milestones.major,
-					itemType: collectionTypes.simple
+					model: /*model*/ ctx[0].milestones.usedMinor,
+					itemType: collectionTypes.simple,
+					allowAdd: false
 				}
 			});
 
@@ -5666,7 +5798,7 @@
 			},
 			p(ctx, dirty) {
 				const collection_changes = {};
-				if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].milestones.major;
+				if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].milestones.usedMinor;
 				collection.$set(collection_changes);
 			},
 			i(local) {
@@ -5684,51 +5816,90 @@
 		};
 	}
 
-	// (51:2) <Details title="Minor Milestones" size="col-lg-3 col-12">
+	// (55:2) <Details title="Minor Milestones" size="col-lg-3 col-12">
 	function create_default_slot_9(ctx) {
 		let collection;
+		let t0;
+		let hr;
+		let t1;
+		let details;
 		let current;
 
 		collection = new Collection({
 				props: {
 					model: /*model*/ ctx[0].milestones.minor,
-					itemType: collectionTypes.simple
+					itemType: collectionTypes.simple,
+					afterRemove: /*func_1*/ ctx[3]
+				}
+			});
+
+		details = new Details({
+				props: {
+					title: "Used",
+					size: "col-12",
+					$$slots: { default: [create_default_slot_10] },
+					$$scope: { ctx }
 				}
 			});
 
 		return {
 			c() {
 				create_component(collection.$$.fragment);
+				t0 = space();
+				hr = element("hr");
+				t1 = space();
+				create_component(details.$$.fragment);
 			},
 			m(target, anchor) {
 				mount_component(collection, target, anchor);
+				insert(target, t0, anchor);
+				insert(target, hr, anchor);
+				insert(target, t1, anchor);
+				mount_component(details, target, anchor);
 				current = true;
 			},
 			p(ctx, dirty) {
 				const collection_changes = {};
 				if (dirty & /*model*/ 1) collection_changes.model = /*model*/ ctx[0].milestones.minor;
+				if (dirty & /*model*/ 1) collection_changes.afterRemove = /*func_1*/ ctx[3];
 				collection.$set(collection_changes);
+				const details_changes = {};
+
+				if (dirty & /*$$scope, model*/ 1025) {
+					details_changes.$$scope = { dirty, ctx };
+				}
+
+				details.$set(details_changes);
 			},
 			i(local) {
 				if (current) return;
 				transition_in(collection.$$.fragment, local);
+				transition_in(details.$$.fragment, local);
 				current = true;
 			},
 			o(local) {
 				transition_out(collection.$$.fragment, local);
+				transition_out(details.$$.fragment, local);
 				current = false;
 			},
 			d(detaching) {
+				if (detaching) {
+					detach(t0);
+					detach(hr);
+					detach(t1);
+				}
+
 				destroy_component(collection, detaching);
+				destroy_component(details, detaching);
 			}
 		};
 	}
 
-	// (56:4) {#each model.skills as skill}
+	// (64:4) {#each model.skills as skill}
 	function create_each_block_1(ctx) {
 		let skill_1;
 		let current;
-		skill_1 = new Skill({ props: { model: /*skill*/ ctx[5] } });
+		skill_1 = new Skill({ props: { model: /*skill*/ ctx[7] } });
 
 		return {
 			c() {
@@ -5740,7 +5911,7 @@
 			},
 			p(ctx, dirty) {
 				const skill_1_changes = {};
-				if (dirty & /*model*/ 1) skill_1_changes.model = /*skill*/ ctx[5];
+				if (dirty & /*model*/ 1) skill_1_changes.model = /*skill*/ ctx[7];
 				skill_1.$set(skill_1_changes);
 			},
 			i(local) {
@@ -5758,7 +5929,7 @@
 		};
 	}
 
-	// (54:2) <Details title="Skills" size="col-lg-3 col-12">
+	// (62:2) <Details title="Skills" size="col-lg-3 col-12">
 	function create_default_slot_8(ctx) {
 		let div;
 		let current;
@@ -5850,11 +6021,11 @@
 		};
 	}
 
-	// (63:4) {#each model.languages as language}
+	// (71:4) {#each model.languages as language}
 	function create_each_block(ctx) {
 		let skill_1;
 		let current;
-		skill_1 = new Skill({ props: { model: /*language*/ ctx[2] } });
+		skill_1 = new Skill({ props: { model: /*language*/ ctx[4] } });
 
 		return {
 			c() {
@@ -5866,7 +6037,7 @@
 			},
 			p(ctx, dirty) {
 				const skill_1_changes = {};
-				if (dirty & /*model*/ 1) skill_1_changes.model = /*language*/ ctx[2];
+				if (dirty & /*model*/ 1) skill_1_changes.model = /*language*/ ctx[4];
 				skill_1.$set(skill_1_changes);
 			},
 			i(local) {
@@ -5884,7 +6055,7 @@
 		};
 	}
 
-	// (61:2) <Details title="Languages" size="col-lg-3 col-12">
+	// (69:2) <Details title="Languages" size="col-lg-3 col-12">
 	function create_default_slot_7(ctx) {
 		let div;
 		let current;
@@ -5976,7 +6147,7 @@
 		};
 	}
 
-	// (68:2) <Details title="Salvage" size="col-lg-3 col-12">
+	// (76:2) <Details title="Salvage" size="col-lg-3 col-12">
 	function create_default_slot_6(ctx) {
 		let collection;
 		let current;
@@ -6016,7 +6187,7 @@
 		};
 	}
 
-	// (71:2) <Details title="Specimens" size="col-lg-3 col-12">
+	// (79:2) <Details title="Specimens" size="col-lg-3 col-12">
 	function create_default_slot_5(ctx) {
 		let collection;
 		let current;
@@ -6056,7 +6227,7 @@
 		};
 	}
 
-	// (74:2) <Details title="Whispers" size="col-lg-3 col-12">
+	// (82:2) <Details title="Whispers" size="col-lg-3 col-12">
 	function create_default_slot_4(ctx) {
 		let collection;
 		let current;
@@ -6096,7 +6267,7 @@
 		};
 	}
 
-	// (77:2) <Details title="Charts" size="col-lg-3 col-12">
+	// (85:2) <Details title="Charts" size="col-lg-3 col-12">
 	function create_default_slot_3(ctx) {
 		let collection;
 		let current;
@@ -6136,7 +6307,7 @@
 		};
 	}
 
-	// (80:2) <Details title="Aspects">
+	// (88:2) <Details title="Aspects">
 	function create_default_slot_2(ctx) {
 		let collection;
 		let current;
@@ -6177,7 +6348,7 @@
 		};
 	}
 
-	// (86:2) <Details title="Temporary Tracks">
+	// (94:2) <Details title="Temporary Tracks">
 	function create_default_slot_1(ctx) {
 		let collection;
 		let current;
@@ -6217,7 +6388,7 @@
 		};
 	}
 
-	// (91:2) <Details title="Notes">
+	// (99:2) <Details title="Notes">
 	function create_default_slot(ctx) {
 		let notes;
 		let current;
@@ -6316,7 +6487,7 @@
 					open: true,
 					title: "Character",
 					size: "col-lg-3 col-12",
-					$$slots: { default: [create_default_slot_14] },
+					$$slots: { default: [create_default_slot_16] },
 					$$scope: { ctx }
 				}
 			});
@@ -6325,7 +6496,7 @@
 				props: {
 					title: "Edges",
 					size: "col-lg-3 col-12",
-					$$slots: { default: [create_default_slot_13] },
+					$$slots: { default: [create_default_slot_15] },
 					$$scope: { ctx }
 				}
 			});
@@ -6334,7 +6505,7 @@
 				props: {
 					title: "Drives",
 					size: "col-lg-3 col-12",
-					$$slots: { default: [create_default_slot_12] },
+					$$slots: { default: [create_default_slot_14] },
 					$$scope: { ctx }
 				}
 			});
@@ -6343,7 +6514,7 @@
 				props: {
 					title: "Mires",
 					size: "col-lg-3 col-12",
-					$$slots: { default: [create_default_slot_11] },
+					$$slots: { default: [create_default_slot_13] },
 					$$scope: { ctx }
 				}
 			});
@@ -6352,7 +6523,7 @@
 				props: {
 					title: "Major Milestones",
 					size: "col-lg-3 col-12",
-					$$slots: { default: [create_default_slot_10] },
+					$$slots: { default: [create_default_slot_11] },
 					$$scope: { ctx }
 				}
 			});
@@ -6536,105 +6707,105 @@
 				navbar.$set(navbar_changes);
 				const details0_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details0_changes.$$scope = { dirty, ctx };
 				}
 
 				details0.$set(details0_changes);
 				const details1_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details1_changes.$$scope = { dirty, ctx };
 				}
 
 				details1.$set(details1_changes);
 				const details2_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details2_changes.$$scope = { dirty, ctx };
 				}
 
 				details2.$set(details2_changes);
 				const details3_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details3_changes.$$scope = { dirty, ctx };
 				}
 
 				details3.$set(details3_changes);
 				const details4_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details4_changes.$$scope = { dirty, ctx };
 				}
 
 				details4.$set(details4_changes);
 				const details5_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details5_changes.$$scope = { dirty, ctx };
 				}
 
 				details5.$set(details5_changes);
 				const details6_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details6_changes.$$scope = { dirty, ctx };
 				}
 
 				details6.$set(details6_changes);
 				const details7_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details7_changes.$$scope = { dirty, ctx };
 				}
 
 				details7.$set(details7_changes);
 				const details8_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details8_changes.$$scope = { dirty, ctx };
 				}
 
 				details8.$set(details8_changes);
 				const details9_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details9_changes.$$scope = { dirty, ctx };
 				}
 
 				details9.$set(details9_changes);
 				const details10_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details10_changes.$$scope = { dirty, ctx };
 				}
 
 				details10.$set(details10_changes);
 				const details11_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details11_changes.$$scope = { dirty, ctx };
 				}
 
 				details11.$set(details11_changes);
 				const details12_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details12_changes.$$scope = { dirty, ctx };
 				}
 
 				details12.$set(details12_changes);
 				const details13_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details13_changes.$$scope = { dirty, ctx };
 				}
 
 				details13.$set(details13_changes);
 				const details14_changes = {};
 
-				if (dirty & /*$$scope, model*/ 257) {
+				if (dirty & /*$$scope, model*/ 1025) {
 					details14_changes.$$scope = { dirty, ctx };
 				}
 
@@ -6715,7 +6886,9 @@
 			$$invalidate(0, model);
 		}
 
-		return [model, navbar_model_binding];
+		const func = item => model.milestones.usedMajor.push(item);
+		const func_1 = item => model.milestones.usedMinor.push(item);
+		return [model, navbar_model_binding, func, func_1];
 	}
 
 	class App extends SvelteComponent {

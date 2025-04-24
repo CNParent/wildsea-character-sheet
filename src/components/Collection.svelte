@@ -11,6 +11,8 @@
     export let capacity;
     export let update;
     export let itemType = collectionTypes.simple;
+    export let afterRemove;
+    export let allowAdd = true;
 
     function add() {
         if (capacity && model.length == capacity) return;
@@ -34,12 +36,13 @@
         listActions.remove(model, item);
         model = model;
 
+        if (afterRemove) afterRemove(item);
         if (update) update();
     }
 
 </script>
 
-{#if !capacity || model.length < capacity}
+{#if (!capacity || model.length < capacity) && allowAdd}
 <button on:click={add} class="btn btn-light badge">Add</button>
 {/if}
 {#each model as item}
