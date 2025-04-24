@@ -10,7 +10,9 @@ const character = () => ({
     edges: [],
     milestones: {
         minor: [],
-        major: []
+        major: [],
+        usedMinor: [],
+        usedMajor: []
     },
     drives: [],
     mires: [],
